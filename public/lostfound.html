@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lost & Found - Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating Campus Background Animation -->
+  <div class="campus-bg-animation">
+    <span class="floating-icon">📚</span>
+    <span class="floating-icon">🎓</span>
+    <span class="floating-icon">✏️</span>
+    <span class="floating-icon">🔬</span>
+    <span class="floating-icon">💡</span>
+    <span class="floating-icon">🏛️</span>
+    <span class="floating-icon">📝</span>
+    <span class="floating-icon">🎯</span>
+    <span class="floating-icon">🌟</span>
+    <span class="floating-icon">📖</span>
+    <span class="floating-icon">🎨</span>
+    <span class="floating-icon">⚡</span>
+  </div>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo-icon">🎓</div>
+        <span class="sidebar-title">Campus Connect</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="announcements.html" class="nav-link">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+        <a href="events.html" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span>Events</span>
+        </a>
+        <a href="clubs.html" class="nav-link">
+          <span class="nav-icon">🤝</span>
+          <span>Clubs</span>
+        </a>
+        <a href="resources.html" class="nav-link">
+          <span class="nav-icon">📚</span>
+          <span>Resources</span>
+        </a>
+        <a href="lostfound.html" class="nav-link active">
+          <span class="nav-icon">🔍</span>
+          <span>Lost & Found</span>
+        </a>
+        <a href="feedback.html" class="nav-link">
+          <span class="nav-icon">💬</span>
+          <span>Feedback</span>
+        </a>
+        <a href="notifications.html" class="nav-link">
+          <span class="nav-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+        <a href="profile.html" class="nav-link">
+          <span class="nav-icon">👤</span>
+          <span>My Profile</span>
+        </a>
+        <a href="admin.html" class="nav-link admin-only-nav" style="display: none;">
+          <span class="nav-icon">⚙️</span>
+          <span>Admin Panel</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div id="sidebar-user-avatar" class="user-avatar">U</div>
+          <div class="user-details">
+            <div id="sidebar-user-name" class="user-name">User</div>
+            <span id="sidebar-user-role" class="user-role-badge role-student">student</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button id="menu-toggle-btn" class="menu-toggle-btn">☰</button>
+          <h1 class="page-title">Campus Lost & Found</h1>
+        </div>
+
+        <div class="navbar-right">
+          <a href="notifications.html" class="nav-action-btn" title="Notifications">
+            🔔
+            <span id="nav-notification-badge" class="badge-count" style="display: none;">0</span>
+          </a>
+          <a href="profile.html" class="nav-action-btn" title="Profile">👤</a>
+          <button onclick="logout()" class="logout-btn-nav">Logout</button>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body">
+        <div class="page-toolbar">
+          <div class="search-filters-group">
+            <div class="search-input-wrapper">
+              <span class="search-icon-inside">🔍</span>
+              <input type="text" id="lf-search" placeholder="Search item by name or location...">
+            </div>
+
+            <select id="lf-type-filter" class="filter-select">
+              <option value="All">All Types</option>
+              <option value="Lost">Lost Items</option>
+              <option value="Found">Found Items</option>
+            </select>
+
+            <select id="lf-status-filter" class="filter-select">
+              <option value="All">All Statuses</option>
+              <option value="Open">Open</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" onclick="openModal('post-lostfound-modal')">
+            + Report Item
+          </button>
+        </div>
+
+        <!-- Lost & Found Grid -->
+        <div id="lostfound-container" class="items-grid">
+          <!-- Populated by app.js -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Report Item Modal -->
+  <div id="post-lostfound-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Post Lost or Found Item</h3>
+        <button class="modal-close-btn" onclick="closeModal('post-lostfound-modal')">✕</button>
+      </div>
+
+      <form id="post-lostfound-form" onsubmit="handlePostLostFound(event)">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lf-type">Listing Type *</label>
+              <select id="lf-type" class="form-control">
+                <option value="Lost">I Lost An Item</option>
+                <option value="Found">I Found An Item</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="lf-itemname">Item Name *</label>
+              <input type="text" id="lf-itemname" class="form-control" placeholder="e.g. Blue Dell Laptop Charger" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lf-location">Location / Area *</label>
+              <input type="text" id="lf-location" class="form-control" placeholder="e.g. Library 2nd floor" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="lf-date">Date *</label>
+              <input type="date" id="lf-date" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="lf-contact">Contact Details (Phone / Email) *</label>
+            <input type="text" id="lf-contact" class="form-control" placeholder="e.g. +1 555-123-4567 or email@college.edu" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="lf-desc">Description & Distinct Features *</label>
+            <textarea id="lf-desc" class="form-control" rows="3" placeholder="Provide distinct characteristics, brand, color, stickers..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('post-lostfound-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Listing</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', loadLostFound);
+  </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Center - Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating Campus Background Animation -->
+  <div class="campus-bg-animation">
+    <span class="floating-icon">📚</span>
+    <span class="floating-icon">🎓</span>
+    <span class="floating-icon">✏️</span>
+    <span class="floating-icon">🔬</span>
+    <span class="floating-icon">💡</span>
+    <span class="floating-icon">🏛️</span>
+    <span class="floating-icon">📝</span>
+    <span class="floating-icon">🎯</span>
+    <span class="floating-icon">🌟</span>
+    <span class="floating-icon">📖</span>
+    <span class="floating-icon">🎨</span>
+    <span class="floating-icon">⚡</span>
+  </div>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo-icon">🎓</div>
+        <span class="sidebar-title">Campus Connect</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="announcements.html" class="nav-link">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+        <a href="events.html" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span>Events</span>
+        </a>
+        <a href="clubs.html" class="nav-link">
+          <span class="nav-icon">🤝</span>
+          <span>Clubs</span>
+        </a>
+        <a href="resources.html" class="nav-link active">
+          <span class="nav-icon">📚</span>
+          <span>Resources</span>
+        </a>
+        <a href="lostfound.html" class="nav-link">
+          <span class="nav-icon">🔍</span>
+          <span>Lost & Found</span>
+        </a>
+        <a href="feedback.html" class="nav-link">
+          <span class="nav-icon">💬</span>
+          <span>Feedback</span>
+        </a>
+        <a href="notifications.html" class="nav-link">
+          <span class="nav-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+        <a href="profile.html" class="nav-link">
+          <span class="nav-icon">👤</span>
+          <span>My Profile</span>
+        </a>
+        <a href="admin.html" class="nav-link admin-only-nav" style="display: none;">
+          <span class="nav-icon">⚙️</span>
+          <span>Admin Panel</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div id="sidebar-user-avatar" class="user-avatar">U</div>
+          <div class="user-details">
+            <div id="sidebar-user-name" class="user-name">User</div>
+            <span id="sidebar-user-role" class="user-role-badge role-student">student</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button id="menu-toggle-btn" class="menu-toggle-btn">☰</button>
+          <h1 class="page-title">Digital Academic Resources</h1>
+        </div>
+
+        <div class="navbar-right">
+          <a href="notifications.html" class="nav-action-btn" title="Notifications">
+            🔔
+            <span id="nav-notification-badge" class="badge-count" style="display: none;">0</span>
+          </a>
+          <a href="profile.html" class="nav-action-btn" title="Profile">👤</a>
+          <button onclick="logout()" class="logout-btn-nav">Logout</button>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body">
+        <div class="page-toolbar">
+          <div class="search-filters-group">
+            <div class="search-input-wrapper">
+              <span class="search-icon-inside">🔍</span>
+              <input type="text" id="resource-search" placeholder="Search resources by title or subject...">
+            </div>
+
+            <select id="resource-dept-filter" class="filter-select">
+              <option value="All">All Departments</option>
+              <option value="Computer Science & Engineering">Computer Science</option>
+              <option value="Information Technology">Information Tech</option>
+              <option value="Electronics & Communication">Electronics</option>
+              <option value="Mechanical Engineering">Mechanical</option>
+              <option value="Civil Engineering">Civil</option>
+              <option value="Business Administration">Management</option>
+            </select>
+
+            <select id="resource-year-filter" class="filter-select">
+              <option value="All">All Years</option>
+              <option value="1st Year">1st Year</option>
+              <option value="2nd Year">2nd Year</option>
+              <option value="3rd Year">3rd Year</option>
+              <option value="4th Year">4th Year</option>
+              <option value="Postgraduate">Postgraduate</option>
+            </select>
+
+            <select id="resource-type-filter" class="filter-select">
+              <option value="All">All Types</option>
+              <option value="Notes">Notes</option>
+              <option value="Previous Papers">Previous Papers</option>
+              <option value="Lab Manual">Lab Manual</option>
+              <option value="Academic PDF">Academic PDF</option>
+              <option value="Useful Links">Useful Links</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary faculty-admin-only" style="display: none;" onclick="openModal('upload-resource-modal')">
+            + Upload Resource
+          </button>
+        </div>
+
+        <!-- Resources Grid -->
+        <div id="resources-container" class="items-grid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Upload Resource Modal (Faculty / Admin) -->
+  <div id="upload-resource-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Upload Academic Resource</h3>
+        <button class="modal-close-btn" onclick="closeModal('upload-resource-modal')">✕</button>
+      </div>
+
+      <form id="upload-resource-form" onsubmit="handleUploadResource(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="res-title">Resource Title *</label>
+            <input type="text" id="res-title" class="form-control" placeholder="e.g. Data Structures & Algorithms Complete Notes" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="res-subject">Subject *</label>
+              <input type="text" id="res-subject" class="form-control" placeholder="e.g. Data Structures (CS301)" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="res-type">Resource Type *</label>
+              <select id="res-type" class="form-control">
+                <option value="Notes" selected>Lecture Notes</option>
+                <option value="Previous Papers">Previous Year Papers</option>
+                <option value="Lab Manual">Lab Manual</option>
+                <option value="Academic PDF">Academic PDF</option>
+                <option value="Useful Links">Useful Link / Tutorial</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="res-dept">Department *</label>
+              <select id="res-dept" class="form-control">
+                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Communication">Electronics & Communication</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Business Administration">Business Administration</option>
+                <option value="General Sciences">General Sciences</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="res-year">Academic Year *</label>
+              <select id="res-year" class="form-control">
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+                <option value="Postgraduate">Postgraduate</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="res-url">File Download Link or Document URL *</label>
+            <input type="url" id="res-url" class="form-control" placeholder="https://drive.google.com/... or https://example.com/file.pdf" required>
+            <span class="form-helper">Enter Google Drive, Cloud Storage link, or web URL.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="res-desc">Description</label>
+            <textarea id="res-desc" class="form-control" rows="2" placeholder="Brief summary of topics covered..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('upload-resource-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Upload Resource</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', loadResources);
+  </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating Campus Background Animation -->
+  <div class="campus-bg-animation">
+    <span class="floating-icon">📚</span>
+    <span class="floating-icon">🎓</span>
+    <span class="floating-icon">✏️</span>
+    <span class="floating-icon">🔬</span>
+    <span class="floating-icon">💡</span>
+    <span class="floating-icon">🏛️</span>
+    <span class="floating-icon">📝</span>
+    <span class="floating-icon">🎯</span>
+    <span class="floating-icon">🌟</span>
+    <span class="floating-icon">📖</span>
+    <span class="floating-icon">🎨</span>
+    <span class="floating-icon">⚡</span>
+  </div>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo-icon">🎓</div>
+        <span class="sidebar-title">Campus Connect</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="announcements.html" class="nav-link">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+        <a href="events.html" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span>Events</span>
+        </a>
+        <a href="clubs.html" class="nav-link">
+          <span class="nav-icon">🤝</span>
+          <span>Clubs</span>
+        </a>
+        <a href="resources.html" class="nav-link">
+          <span class="nav-icon">📚</span>
+          <span>Resources</span>
+        </a>
+        <a href="lostfound.html" class="nav-link">
+          <span class="nav-icon">🔍</span>
+          <span>Lost & Found</span>
+        </a>
+        <a href="feedback.html" class="nav-link">
+          <span class="nav-icon">💬</span>
+          <span>Feedback</span>
+        </a>
+        <a href="notifications.html" class="nav-link">
+          <span class="nav-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+        <a href="profile.html" class="nav-link active">
+          <span class="nav-icon">👤</span>
+          <span>My Profile</span>
+        </a>
+        <a href="admin.html" class="nav-link admin-only-nav" style="display: none;">
+          <span class="nav-icon">⚙️</span>
+          <span>Admin Panel</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div id="sidebar-user-avatar" class="user-avatar">U</div>
+          <div class="user-details">
+            <div id="sidebar-user-name" class="user-name">User</div>
+            <span id="sidebar-user-role" class="user-role-badge role-student">student</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button id="menu-toggle-btn" class="menu-toggle-btn">☰</button>
+          <h1 class="page-title">User Profile & Customization</h1>
+        </div>
+
+        <div class="navbar-right">
+          <a href="notifications.html" class="nav-action-btn" title="Notifications">
+            🔔
+            <span id="nav-notification-badge" class="badge-count" style="display: none;">0</span>
+          </a>
+          <button onclick="logout()" class="logout-btn-nav">Logout</button>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body" style="max-width: 900px; margin: 0 auto; width: 100%;">
+        
+        <!-- Profile Banner Card -->
+        <div style="background: #fff; border-radius: var(--radius-xl); border: 1px solid var(--border-color); padding: 28px; margin-bottom: 24px; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div id="profile-avatar-large" style="width: 80px; height: 80px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--primary), #92400e); display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; font-weight: bold; overflow: hidden; border: 3px solid #fff; box-shadow: var(--shadow-md);">
+              <img id="profile-avatar-img" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Student" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div>
+              <h2 id="profile-name-display" style="font-size: 22px; font-weight: 800; color: var(--text-main);">User Name</h2>
+              <p id="profile-email-display" style="color: var(--text-muted); font-size: 14px;">user@college.edu</p>
+              <div style="display: flex; gap: 8px; margin-top: 6px; align-items: center;">
+                <span id="profile-role-display" class="badge badge-medium">STUDENT</span>
+                <span id="profile-dept-display" style="font-size: 12px; color: var(--text-muted); font-weight: 500;">Computer Science</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Matched Color Toggle Tabs -->
+          <div class="toggle-group-caramel">
+            <button type="button" class="toggle-btn-caramel active" id="tab-btn-info" onclick="switchProfileTab('info')">
+              Profile Info
+            </button>
+            <button type="button" class="toggle-btn-caramel" id="tab-btn-avatar" onclick="switchProfileTab('avatar')">
+              Avatar & Photo
+            </button>
+            <button type="button" class="toggle-btn-caramel" id="tab-btn-security" onclick="switchProfileTab('security')">
+              Security
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 1: Profile Information -->
+        <div id="profile-tab-info" style="background: #fff; border-radius: var(--radius-xl); border: 1px solid var(--border-color); padding: 28px; margin-bottom: 24px; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Academic & Personal Details</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Manage your public details visible to campus members and coordinators.</p>
+
+          <form id="edit-profile-form" onsubmit="handleUpdateProfile(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="prof-name">Full Name *</label>
+                <input type="text" id="prof-name" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-email">Email Address (Immutable)</label>
+                <input type="email" id="prof-email" class="form-control" disabled style="background: var(--bg-subtle); cursor: not-allowed;">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="prof-studentid">Student ID / Roll No</label>
+                <input type="text" id="prof-studentid" class="form-control" disabled style="background: var(--bg-subtle); cursor: not-allowed;">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-phone">Phone Number</label>
+                <input type="tel" id="prof-phone" class="form-control" placeholder="+1 (555) 000-0000">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="prof-department">Department</label>
+                <select id="prof-department" class="form-control">
+                  <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                  <option value="Information Technology">Information Technology</option>
+                  <option value="Electronics & Communication">Electronics & Communication</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Business Administration">Business Administration</option>
+                  <option value="General Sciences">General Sciences</option>
+                  <option value="Campus Administration">Campus Administration</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-year">Academic Year / Designation</label>
+                <input type="text" id="prof-year" class="form-control" placeholder="e.g. 3rd Year / Assistant Professor">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-bio">About Me / Bio</label>
+              <textarea id="prof-bio" class="form-control" rows="3" placeholder="Write a short summary about your interests, campus involvement, or research..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-skills">Skills & Academic Interests (Comma-separated)</label>
+              <input type="text" id="prof-skills" class="form-control" placeholder="e.g. Python, Web Development, Robotics, Photography">
+              <div id="skills-display-tags" class="skills-badge-list"></div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="prof-github">GitHub / Portfolio URL</label>
+                <input type="url" id="prof-github" class="form-control" placeholder="https://github.com/yourhandle">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="prof-linkedin">LinkedIn Profile URL</label>
+                <input type="url" id="prof-linkedin" class="form-control" placeholder="https://linkedin.com/in/yourhandle">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
+              Save Profile Changes
+            </button>
+          </form>
+        </div>
+
+        <!-- TAB 2: Avatar & Profile Photo Adding Option -->
+        <div id="profile-tab-avatar" style="display: none; background: #fff; border-radius: var(--radius-xl); border: 1px solid var(--border-color); padding: 28px; margin-bottom: 24px; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Choose Your Profile Avatar</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Pick from our modern illustrated avatars or provide a custom image link.</p>
+
+          <label class="form-label">Preset Illustrated Avatars</label>
+          <div class="avatar-picker-grid">
+            <div class="avatar-option" onclick="selectPresetAvatar('https://api.dicebear.com/7.x/avataaars/svg?seed=AlexStudent&backgroundColor=ffd5dc,d1d4f9')">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=AlexStudent&backgroundColor=ffd5dc,d1d4f9" alt="Avatar 1">
+            </div>
+            <div class="avatar-option" onclick="selectPresetAvatar('https://api.dicebear.com/7.x/avataaars/svg?seed=Elena&backgroundColor=ffdfbf,c0aede')">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Elena&backgroundColor=ffdfbf,c0aede" alt="Avatar 2">
+            </div>
+            <div class="avatar-option" onclick="selectPresetAvatar('https://api.dicebear.com/7.x/avataaars/svg?seed=ProfDavid&backgroundColor=c0aede,d1d4f9')">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=ProfDavid&backgroundColor=c0aede,d1d4f9" alt="Avatar 3">
+            </div>
+            <div class="avatar-option" onclick="selectPresetAvatar('https://api.dicebear.com/7.x/avataaars/svg?seed=DrSarah&backgroundColor=ffd5dc,ffdfbf')">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=DrSarah&backgroundColor=ffd5dc,ffdfbf" alt="Avatar 4">
+            </div>
+            <div class="avatar-option" onclick="selectPresetAvatar('https://api.dicebear.com/7.x/bottts/svg?seed=TechBot')">
+              <img src="https://api.dicebear.com/7.x/bottts/svg?seed=TechBot" alt="Bot 1">
+            </div>
+            <div class="avatar-option" onclick="selectPresetAvatar('https://api.dicebear.com/7.x/notionists/svg?seed=CampusCoder')">
+              <img src="https://api.dicebear.com/7.x/notionists/svg?seed=CampusCoder" alt="Coder 1">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 20px;">
+            <label class="form-label" for="prof-avatar-url">Or Custom Avatar / Image URL</label>
+            <input type="url" id="prof-avatar-url" class="form-control" placeholder="https://example.com/my-photo.jpg" oninput="previewCustomAvatar(this.value)">
+            <span class="form-helper">Enter a direct image link from Imgur, Cloudinary, GitHub, or any public image URL.</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 16px; margin-top: 16px;">
+            <div style="width: 60px; height: 60px; border-radius: 9999px; overflow: hidden; border: 2px solid var(--primary-border);">
+              <img id="avatar-live-preview" src="https://api.dicebear.com/7.x/avataaars/svg?seed=AlexStudent" alt="Preview" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <span style="font-size: 13px; color: var(--text-muted);">Live Preview</span>
+          </div>
+
+          <button type="button" class="btn btn-primary" style="margin-top: 24px;" onclick="saveProfileAvatar()">
+            Apply Avatar
+          </button>
+        </div>
+
+        <!-- TAB 3: Security & Password -->
+        <div id="profile-tab-security" style="display: none; background: #fff; border-radius: var(--radius-xl); border: 1px solid var(--border-color); padding: 28px; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Change Password</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Ensure your account is using a strong password of at least 6 characters.</p>
+
+          <form id="change-password-form" onsubmit="handleChangePassword(event)">
+            <div class="form-group">
+              <label class="form-label" for="pw-current">Current Password</label>
+              <input type="password" id="pw-current" class="form-control" required placeholder="••••••••">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="pw-new">New Password</label>
+                <input type="password" id="pw-new" class="form-control" minlength="6" required placeholder="••••••••">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="pw-confirm">Confirm New Password</label>
+                <input type="password" id="pw-confirm" class="form-control" minlength="6" required placeholder="••••••••">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
+              Update Password
+            </button>
+          </form>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', loadProfile);
+
+    function switchProfileTab(tabName) {
+      document.getElementById('profile-tab-info').style.display = tabName === 'info' ? 'block' : 'none';
+      document.getElementById('profile-tab-avatar').style.display = tabName === 'avatar' ? 'block' : 'none';
+      document.getElementById('profile-tab-security').style.display = tabName === 'security' ? 'block' : 'none';
+
+      document.getElementById('tab-btn-info').classList.toggle('active', tabName === 'info');
+      document.getElementById('tab-btn-avatar').classList.toggle('active', tabName === 'avatar');
+      document.getElementById('tab-btn-security').classList.toggle('active', tabName === 'security');
+    }
+
+    function selectPresetAvatar(url) {
+      document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
+      document.getElementById('prof-avatar-url').value = url;
+      document.getElementById('avatar-live-preview').src = url;
+    }
+
+    function previewCustomAvatar(url) {
+      if (url && url.trim()) {
+        document.getElementById('avatar-live-preview').src = url.trim();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating Campus Background Animation -->
+  <div class="campus-bg-animation">
+    <span class="floating-icon">📚</span>
+    <span class="floating-icon">🎓</span>
+    <span class="floating-icon">✏️</span>
+    <span class="floating-icon">🔬</span>
+    <span class="floating-icon">💡</span>
+    <span class="floating-icon">🏛️</span>
+    <span class="floating-icon">📝</span>
+    <span class="floating-icon">🎯</span>
+    <span class="floating-icon">🌟</span>
+    <span class="floating-icon">📖</span>
+    <span class="floating-icon">🎨</span>
+    <span class="floating-icon">⚡</span>
+  </div>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo-icon">🎓</div>
+        <span class="sidebar-title">Campus Connect</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="announcements.html" class="nav-link">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+        <a href="events.html" class="nav-link">
+          <span class="nav-icon">📅</span>
+          <span>Events</span>
+        </a>
+        <a href="clubs.html" class="nav-link">
+          <span class="nav-icon">🤝</span>
+          <span>Clubs</span>
+        </a>
+        <a href="resources.html" class="nav-link">
+          <span class="nav-icon">📚</span>
+          <span>Resources</span>
+        </a>
+        <a href="lostfound.html" class="nav-link">
+          <span class="nav-icon">🔍</span>
+          <span>Lost & Found</span>
+        </a>
+        <a href="feedback.html" class="nav-link">
+          <span class="nav-icon">💬</span>
+          <span>Feedback</span>
+        </a>
+        <a href="notifications.html" class="nav-link active">
+          <span class="nav-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+        <a href="profile.html" class="nav-link">
+          <span class="nav-icon">👤</span>
+          <span>My Profile</span>
+        </a>
+        <a href="admin.html" class="nav-link admin-only-nav" style="display: none;">
+          <span class="nav-icon">⚙️</span>
+          <span>Admin Panel</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div id="sidebar-user-avatar" class="user-avatar">U</div>
+          <div class="user-details">
+            <div id="sidebar-user-name" class="user-name">User</div>
+            <span id="sidebar-user-role" class="user-role-badge role-student">student</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button id="menu-toggle-btn" class="menu-toggle-btn">☰</button>
+          <h1 class="page-title">Notifications & Alerts</h1>
+        </div>
+
+        <div class="navbar-right">
+          <a href="profile.html" class="nav-action-btn" title="Profile">👤</a>
+          <button onclick="logout()" class="logout-btn-nav">Logout</button>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body" style="max-width: 900px; margin: 0 auto; width: 100%;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h2 style="font-size: 20px; font-weight: 700;">Campus Notification Center</h2>
+            <p style="font-size: 14px; color: var(--text-muted);">Real-time alerts for notices, event confirmations, and club messages.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="markAllNotificationsRead()">Mark All as Read</button>
+        </div>
+
+        <!-- Full Notifications List -->
+        <div id="notifications-full-list">
+          <!-- Rendered by app.js -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', loadNotificationsPage);
+  </script>
+</body>
+</html>

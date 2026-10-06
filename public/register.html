@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration - Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-container">
+  <!-- Floating Campus Background Animation -->
+  <div class="campus-bg-animation">
+    <span class="floating-icon">📚</span>
+    <span class="floating-icon">🎓</span>
+    <span class="floating-icon">✏️</span>
+    <span class="floating-icon">🔬</span>
+    <span class="floating-icon">💡</span>
+    <span class="floating-icon">🏛️</span>
+    <span class="floating-icon">📝</span>
+    <span class="floating-icon">🎯</span>
+    <span class="floating-icon">🌟</span>
+    <span class="floating-icon">📖</span>
+    <span class="floating-icon">🎨</span>
+    <span class="floating-icon">⚡</span>
+  </div>
+
+  <div class="auth-card auth-card-wide">
+    <div class="auth-header">
+      <div class="auth-brand-logo">🎓</div>
+      <h2 class="auth-title">Create Account</h2>
+      <p class="auth-subtitle">Join the Campus Connect digital community</p>
+    </div>
+
+    <form id="register-form" onsubmit="handleRegister(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full Name *</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. John Doe" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Email Address *</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="e.g. john@college.edu" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Password (min. 6 characters) *</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="••••••••" minlength="6" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-studentid">Student ID / Roll No</label>
+          <input type="text" id="reg-studentid" class="form-control" placeholder="e.g. CS2026-042">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="reg-department">Department</label>
+          <select id="reg-department" class="form-control">
+            <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Electronics & Communication">Electronics & Communication</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Civil Engineering">Civil Engineering</option>
+            <option value="Business Administration">Business Administration</option>
+            <option value="General Sciences">General Sciences</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-year">Academic Year</label>
+          <select id="reg-year" class="form-control">
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+            <option value="Postgraduate">Postgraduate</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="reg-phone">Phone Number</label>
+          <input type="tel" id="reg-phone" class="form-control" placeholder="+1 (555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-role">Role</label>
+          <select id="reg-role" class="form-control">
+            <option value="student" selected>Student</option>
+            <option value="faculty">Faculty Member</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">
+        Complete Registration
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a href="login.html"><strong>Sign in here</strong></a>
+      <div style="margin-top: 12px;">
+        <a href="index.html" style="font-size: 13px; color: var(--text-muted);">← Return to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

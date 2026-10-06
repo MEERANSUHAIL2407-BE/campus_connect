@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-container">
+  <!-- Floating Campus Background Animation -->
+  <div class="campus-bg-animation">
+    <span class="floating-icon">📚</span>
+    <span class="floating-icon">🎓</span>
+    <span class="floating-icon">✏️</span>
+    <span class="floating-icon">🔬</span>
+    <span class="floating-icon">💡</span>
+    <span class="floating-icon">🏛️</span>
+    <span class="floating-icon">📝</span>
+    <span class="floating-icon">🎯</span>
+    <span class="floating-icon">🌟</span>
+    <span class="floating-icon">📖</span>
+    <span class="floating-icon">🎨</span>
+    <span class="floating-icon">⚡</span>
+  </div>
+
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-brand-logo">🎓</div>
+      <h2 class="auth-title">Welcome Back</h2>
+      <p class="auth-subtitle">Sign in to your Campus Connect account</p>
+    </div>
+
+    <!-- 1-Click Quick Demo Sign In Box -->
+    <div class="demo-login-box">
+      <div style="font-size: 13px; font-weight: 700; color: var(--primary-dark); display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <span>⚡</span> 1-Click Instant Demo Sign In
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Test the full system instantly with pre-configured roles:</p>
+      
+      <div class="demo-btn-group">
+        <button type="button" class="demo-btn" onclick="handleDemoLogin('student')">
+          🎓 Student
+        </button>
+        <button type="button" class="demo-btn" onclick="handleDemoLogin('faculty')">
+          👨‍🏫 Faculty
+        </button>
+        <button type="button" class="demo-btn" onclick="handleDemoLogin('admin')">
+          👑 Admin
+        </button>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; text-align: center; margin-bottom: 20px;">
+      <hr style="flex: 1; border: none; border-top: 1px solid var(--border-color);">
+      <span style="padding: 0 12px; font-size: 12px; color: var(--text-muted); font-weight: 600;">OR SIGN IN WITH EMAIL</span>
+      <hr style="flex: 1; border: none; border-top: 1px solid var(--border-color);">
+    </div>
+
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label class="form-label" for="login-email">College Email Address</label>
+        <input type="email" id="login-email" class="form-control" placeholder="name@college.edu" required autofocus>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="login-password">Password</label>
+        <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 8px;">
+        Sign In
+      </button>
+    </form>
+    
+
+    <div class="auth-footer">
+      Don't have an account yet? <a href="register.html"><strong>Register here</strong></a>
+      <div style="margin-top: 14px;">
+        <a href="index.html" style="font-size: 13px; color: var(--text-muted);">← Return to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

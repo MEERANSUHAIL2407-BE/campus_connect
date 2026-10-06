@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Events - Campus Connect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating Campus Background Animation -->
+  <div class="campus-bg-animation">
+    <span class="floating-icon">📚</span>
+    <span class="floating-icon">🎓</span>
+    <span class="floating-icon">✏️</span>
+    <span class="floating-icon">🔬</span>
+    <span class="floating-icon">💡</span>
+    <span class="floating-icon">🏛️</span>
+    <span class="floating-icon">📝</span>
+    <span class="floating-icon">🎯</span>
+    <span class="floating-icon">🌟</span>
+    <span class="floating-icon">📖</span>
+    <span class="floating-icon">🎨</span>
+    <span class="floating-icon">⚡</span>
+  </div>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo-icon">🎓</div>
+        <span class="sidebar-title">Campus Connect</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="announcements.html" class="nav-link">
+          <span class="nav-icon">📢</span>
+          <span>Announcements</span>
+        </a>
+        <a href="events.html" class="nav-link active">
+          <span class="nav-icon">📅</span>
+          <span>Events</span>
+        </a>
+        <a href="clubs.html" class="nav-link">
+          <span class="nav-icon">🤝</span>
+          <span>Clubs</span>
+        </a>
+        <a href="resources.html" class="nav-link">
+          <span class="nav-icon">📚</span>
+          <span>Resources</span>
+        </a>
+        <a href="lostfound.html" class="nav-link">
+          <span class="nav-icon">🔍</span>
+          <span>Lost & Found</span>
+        </a>
+        <a href="feedback.html" class="nav-link">
+          <span class="nav-icon">💬</span>
+          <span>Feedback</span>
+        </a>
+        <a href="notifications.html" class="nav-link">
+          <span class="nav-icon">🔔</span>
+          <span>Notifications</span>
+        </a>
+        <a href="profile.html" class="nav-link">
+          <span class="nav-icon">👤</span>
+          <span>My Profile</span>
+        </a>
+        <a href="admin.html" class="nav-link admin-only-nav" style="display: none;">
+          <span class="nav-icon">⚙️</span>
+          <span>Admin Panel</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div id="sidebar-user-avatar" class="user-avatar">U</div>
+          <div class="user-details">
+            <div id="sidebar-user-name" class="user-name">User</div>
+            <span id="sidebar-user-role" class="user-role-badge role-student">student</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button id="menu-toggle-btn" class="menu-toggle-btn">☰</button>
+          <h1 class="page-title">Campus Events</h1>
+        </div>
+
+        <div class="navbar-right">
+          <a href="notifications.html" class="nav-action-btn" title="Notifications">
+            🔔
+            <span id="nav-notification-badge" class="badge-count" style="display: none;">0</span>
+          </a>
+          <a href="profile.html" class="nav-action-btn" title="Profile">👤</a>
+          <button onclick="logout()" class="logout-btn-nav">Logout</button>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body">
+        <!-- Page Toolbar -->
+        <div class="page-toolbar">
+          <div class="search-filters-group">
+            <div class="search-input-wrapper">
+              <span class="search-icon-inside">🔍</span>
+              <input type="text" id="event-search" placeholder="Search events by title, venue, organizer...">
+            </div>
+
+            <select id="event-category-filter" class="filter-select">
+              <option value="All">All Categories</option>
+              <option value="Technical">Technical</option>
+              <option value="Cultural">Cultural</option>
+              <option value="Sports">Sports</option>
+              <option value="Workshop">Workshop</option>
+              <option value="Seminar">Seminar</option>
+              <option value="Hackathon">Hackathon</option>
+              <option value="Club Event">Club Event</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary faculty-admin-only" style="display: none;" onclick="openModal('create-event-modal')">
+            + Create Event
+          </button>
+        </div>
+
+        <!-- Events Grid -->
+        <div id="events-container" class="items-grid">
+          <!-- Events dynamically loaded by app.js -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Create Event Modal (Faculty / Admin Only) -->
+  <div id="create-event-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Create Campus Event</h3>
+        <button class="modal-close-btn" onclick="closeModal('create-event-modal')">✕</button>
+      </div>
+
+      <form id="create-event-form" onsubmit="handleCreateEvent(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="ev-title">Event Title *</label>
+            <input type="text" id="ev-title" class="form-control" placeholder="e.g. Annual Hackathon 2026" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="ev-category">Category</label>
+              <select id="ev-category" class="form-control">
+                <option value="Technical">Technical</option>
+                <option value="Cultural">Cultural</option>
+                <option value="Sports">Sports</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Hackathon">Hackathon</option>
+                <option value="Club Event">Club Event</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ev-date">Date *</label>
+              <input type="date" id="ev-date" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="ev-starttime">Start Time *</label>
+              <input type="time" id="ev-starttime" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ev-endtime">End Time *</label>
+              <input type="time" id="ev-endtime" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="ev-venue">Venue / Location *</label>
+              <input type="text" id="ev-venue" class="form-control" placeholder="e.g. Main Auditorium / Lab 3" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ev-organizer">Organizer / Department *</label>
+              <input type="text" id="ev-organizer" class="form-control" placeholder="e.g. Dept of Computer Science" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="ev-max">Max Participants</label>
+              <input type="number" id="ev-max" class="form-control" value="100" min="1" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ev-deadline">Registration Deadline</label>
+              <input type="date" id="ev-deadline" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="ev-description">Event Description *</label>
+            <textarea id="ev-description" class="form-control" rows="3" placeholder="Provide event rules, schedule, and speaker details..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('create-event-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Attendees List Modal -->
+  <div id="attendees-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width: 750px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Registered Students List</h3>
+        <button class="modal-close-btn" onclick="closeModal('attendees-modal')">✕</button>
+      </div>
+      <div class="modal-body" id="attendees-modal-body">
+        <!-- Attendees rendered here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('attendees-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', loadEvents);
+  </script>
+</body>
+</html>
